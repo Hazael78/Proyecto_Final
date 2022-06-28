@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hazae
  */
-public class usuario extends javax.swing.JFrame {
+public class Ifrmusuario extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form usuario
+     * Creates new form Ifrmusuario
      */
     
     List<Datos> listadatos = new ArrayList<Datos>();
@@ -27,28 +27,13 @@ public class usuario extends javax.swing.JFrame {
     DefaultTableModel mimodelo = new DefaultTableModel(null,titulo);
     String accion = "I";
     int valorID=0;
-    
-    public usuario() {
+    public Ifrmusuario() {
         initComponents();
         CargarDatos();
+        btnlim.setEnabled(false);
+        btnmod.setEnabled(false);
     }
 
-     private void CargarDatos(){
-       //Para limpiar el modelo
-       mimodelo = new DefaultTableModel(null,titulo);
-       //Para recargar la tabla cada vez que se modifique algo
-       Conexion conexion = new Conexion();
-        if (conexion.consultartodos()){
-            listadatos = conexion.getListDatos();
-            for(Datos datos : listadatos){
-               mimodelo.addRow(new Object[]{String.valueOf(datos.getId()),datos.getNombre(),datos.getDireccion(),datos.getFechaa(),datos.getFechal()});
-            }
-            tabladata.setModel(mimodelo);
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pueden cargar los datos....");
-            
-        }
-   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,72 +43,63 @@ public class usuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtdireccion = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtan = new javax.swing.JTextField();
         txtli = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabladata = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         btncap = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         btnmod = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         btnlim = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtdireccion = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(51, 255, 204));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel1.setText("Usuario");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(3, 118, 118));
-        jLabel2.setText("Nombre:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel3.setText("Nomina");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(3, 118, 118));
-        jLabel4.setText("Direccion:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(3, 118, 118));
-        jLabel5.setText("Fecha de antiguedad:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(3, 118, 118));
-        jLabel6.setText("Fecha de liquidacion:");
-
-        txtdireccion.setBackground(new java.awt.Color(240, 240, 240));
-        txtdireccion.setForeground(new java.awt.Color(204, 102, 0));
+        setClosable(true);
+        setIconifiable(true);
 
         txtnombre.setBackground(new java.awt.Color(240, 240, 240));
         txtnombre.setForeground(new java.awt.Color(204, 102, 0));
+        txtnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreActionPerformed(evt);
+            }
+        });
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnombreKeyReleased(evt);
+            }
+        });
 
         txtan.setBackground(new java.awt.Color(240, 240, 240));
         txtan.setForeground(new java.awt.Color(204, 102, 0));
+        txtan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtanActionPerformed(evt);
+            }
+        });
+        txtan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtanKeyReleased(evt);
+            }
+        });
 
         txtli.setBackground(new java.awt.Color(240, 240, 240));
         txtli.setForeground(new java.awt.Color(204, 102, 0));
+        txtli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtliActionPerformed(evt);
+            }
+        });
+        txtli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtliKeyReleased(evt);
+            }
+        });
 
         tabladata.setBackground(new java.awt.Color(102, 255, 102));
         tabladata.setModel(new javax.swing.table.DefaultTableModel(
@@ -149,6 +125,14 @@ public class usuario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabladata);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel1.setText("Usuario");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(3, 118, 118));
+        jLabel2.setText("Nombre:");
+
         btncap.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         btncap.setForeground(new java.awt.Color(184, 84, 12));
         btncap.setText("Capturar");
@@ -157,6 +141,10 @@ public class usuario extends javax.swing.JFrame {
                 btncapActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel3.setText("Nomina");
 
         btnmod.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         btnmod.setForeground(new java.awt.Color(184, 84, 12));
@@ -167,10 +155,37 @@ public class usuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(3, 118, 118));
+        jLabel4.setText("Direccion:");
+
+        btnlim.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        btnlim.setForeground(new java.awt.Color(153, 0, 153));
         btnlim.setText("Limpiar");
         btnlim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnlimActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(3, 118, 118));
+        jLabel5.setText("Fecha de antiguedad:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(3, 118, 118));
+        jLabel6.setText("Fecha de liquidacion:");
+
+        txtdireccion.setBackground(new java.awt.Color(240, 240, 240));
+        txtdireccion.setForeground(new java.awt.Color(204, 102, 0));
+        txtdireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdireccionActionPerformed(evt);
+            }
+        });
+        txtdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtdireccionKeyReleased(evt);
             }
         });
 
@@ -182,7 +197,7 @@ public class usuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,9 +215,9 @@ public class usuario extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtli, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(txtli, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                             .addComponent(txtan))
-                        .addGap(50, 50, 50)
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,7 +231,7 @@ public class usuario extends javax.swing.JFrame {
                         .addComponent(btnmod)
                         .addGap(120, 120, 120)
                         .addComponent(btnlim)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 138, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,14 +258,45 @@ public class usuario extends javax.swing.JFrame {
                     .addComponent(btncap)
                     .addComponent(btnmod)
                     .addComponent(btnlim))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CargarDatos(){
+       //Para limpiar el modelo
+       mimodelo = new DefaultTableModel(null,titulo);
+       //Para recargar la tabla cada vez que se modifique algo
+       Conexion conexion = new Conexion();
+        if (conexion.consultartodos()){
+            listadatos = conexion.getListDatos();
+            for(Datos datos : listadatos){
+               mimodelo.addRow(new Object[]{String.valueOf(datos.getId()),datos.getNombre(),datos.getDireccion(),datos.getFechaa(),datos.getFechal()});
+            }
+            tabladata.setModel(mimodelo);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pueden cargar los datos....");
+            
+        }
+        
+   }
+    
+    private void tabladataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabladataMousePressed
+        // TODO add your handling code here:
+        int columna = tabladata.getSelectedColumn();
+        int fila = tabladata.getSelectedRow();
+        String cadena = tabladata.getValueAt(fila, columna).toString();
+        txtnombre.setText(tabladata.getValueAt(fila, 1).toString());
+        txtdireccion.setText(tabladata.getValueAt(fila, 2).toString());
+        txtan.setText(tabladata.getValueAt(fila, 3).toString());
+        txtli.setText(tabladata.getValueAt(fila, 4).toString());
+        valorID = Integer.valueOf(tabladata.getValueAt(fila, 0).toString());
+        btnmod.setEnabled(true);
+        btnlim.setEnabled(true);
+    }//GEN-LAST:event_tabladataMousePressed
 
     private void btncapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncapActionPerformed
         // TODO add your handling code here:
@@ -261,11 +307,11 @@ public class usuario extends javax.swing.JFrame {
         datos.setFechaa(txtan.getText());
         datos.setFechal(txtli.getText());
         if (accion.equals("I")){
-        if(conexion.insertar(datos)){
-            JOptionPane.showMessageDialog(this, "Se grabo correctamente...");
-        }else{
-            JOptionPane.showMessageDialog(this, "Error al grabar...");
-        }
+            if(conexion.insertar(datos)){
+                JOptionPane.showMessageDialog(this, "Se grabo correctamente...");
+            }else{
+                JOptionPane.showMessageDialog(this, "Error al grabar...");
+            }
         }else if (accion.equals("A")) {
             datos.setId(valorID);
             if(conexion.actualizar(datos)){
@@ -273,84 +319,91 @@ public class usuario extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar","Actualizacion",JOptionPane.INFORMATION_MESSAGE);
             }
-    }                                         
+        }
         CargarDatos();
+        btnlim.setEnabled(true);
     }//GEN-LAST:event_btncapActionPerformed
 
-    private void tabladataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabladataMousePressed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Se preciono algun lugar de la tabla","Seleccion",JOptionPane.INFORMATION_MESSAGE);
-        int columna = tabladata.getSelectedColumn();
-        int fila = tabladata.getSelectedRow();
-        String cadena = tabladata.getValueAt(fila, columna).toString();
-        JOptionPane.showMessageDialog(null, "Columna -> " + columna + "\n fila -> " + fila + "\n informacion en la celda -> " + cadena,"Posicion seleccionada ",JOptionPane.INFORMATION_MESSAGE);
-        txtnombre.setText(tabladata.getValueAt(fila, 1).toString());
-        txtdireccion.setText(tabladata.getValueAt(fila, 2).toString());
-        txtan.setText(tabladata.getValueAt(fila, 3).toString());
-        txtli.setText(tabladata.getValueAt(fila, 4).toString());
-        valorID = Integer.valueOf(tabladata.getValueAt(fila, 0).toString());
-    }//GEN-LAST:event_tabladataMousePressed
-
+    public void habilitarboton(){
+        if (!txtnombre.getText().isEmpty() && !txtdireccion.getText().isEmpty() && !txtli.getText().isEmpty() && !txtan.getText().isEmpty() ){
+            btnlim.setEnabled(true);
+        }else{
+            btnlim.setEnabled(false);
+        }
+    }
+    
     private void btnmodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodActionPerformed
         // TODO add your handling code here:
         Conexion conexion = new Conexion();
-         Datos datos = new Datos();
-         
-         datos.setId(valorID);
-         datos.setNombre(txtnombre.getText());
-         datos.setDireccion(txtdireccion.getText());
-         datos.setFechaa(txtan.getText());
-         datos.setFechal(txtli.getText());      
-         
-         if (conexion.actualizar(datos)) {
-              JOptionPane.showMessageDialog(this, "Se actualizo correctamente...");    
+        Datos datos = new Datos();
+
+        datos.setId(valorID);
+        datos.setNombre(txtnombre.getText());
+        datos.setDireccion(txtdireccion.getText());
+        datos.setFechaa(txtan.getText());
+        datos.setFechal(txtli.getText());
+
+        if (conexion.actualizar(datos)) {
+            JOptionPane.showMessageDialog(this, "Se actualizo correctamente...");
             mimodelo= (DefaultTableModel) tabladata.getModel();
             mimodelo.getDataVector().removeAllElements();
             CargarDatos();
+            btnlim.setEnabled(true);
+            btnmod.setEnabled(false);
         }else{
-              JOptionPane.showMessageDialog(this, "Error al actualizar...");           
-         }
+            JOptionPane.showMessageDialog(this, "Error al actualizar...");
+        }
     }//GEN-LAST:event_btnmodActionPerformed
 
     private void btnlimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimActionPerformed
         // TODO add your handling code here:
-       
+        txtnombre.setText(" ");
+        txtdireccion.setText("");
+        txtan.setText("");
+        txtli.setText("");
+        btnlim.setEnabled(false);
+        btnmod.setEnabled(false);
     }//GEN-LAST:event_btnlimActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new usuario().setVisible(true);
-            }
-        });
-    }
+    private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdireccionActionPerformed
+
+    private void txtliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtliActionPerformed
+
+    private void txtanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtanActionPerformed
+
+    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
+        // TODO add your handling code here:
+        
+        btnlim.setEnabled(true);
+    }//GEN-LAST:event_txtnombreKeyReleased
+
+    private void txtdireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyReleased
+        // TODO add your handling code here:
+        btnlim.setEnabled(true);
+    }//GEN-LAST:event_txtdireccionKeyReleased
+
+    private void txtliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtliKeyReleased
+        // TODO add your handling code here:
+        btnlim.setEnabled(true);
+     ;
+    }//GEN-LAST:event_txtliKeyReleased
+
+    private void txtanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtanKeyReleased
+        // TODO add your handling code here:
+        btnlim.setEnabled(true);
+        
+    }//GEN-LAST:event_txtanKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncap;
@@ -362,7 +415,6 @@ public class usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabladata;
     private javax.swing.JTextField txtan;

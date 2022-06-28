@@ -132,8 +132,8 @@ public class JFLoggin extends javax.swing.JFrame {
                             usuario ventanaUsuario = new usuario();
                             ventanaUsuario.setVisible(true);
                         }else{
-                            admin ventanaAdmin = new admin();
-                            ventanaAdmin.setVisible(true);
+                            //admin ventanaAdmin = new admin();
+                            //ventanaAdmin.setVisible(true);
                         }
                         
                         

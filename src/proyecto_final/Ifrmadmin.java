@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hazae
  */
-public class admin extends javax.swing.JFrame {
+public class Ifrmadmin extends javax.swing.JFrame {
 
     /**
-     * Creates new form admin
+     * Creates new form Ifrmadmin
      */
     
     List<Datos> listadatos = new ArrayList<Datos>();
@@ -27,7 +27,7 @@ public class admin extends javax.swing.JFrame {
     DefaultTableModel mimodelo = new DefaultTableModel(null,titulo);
     String accion = "I";
     int valorID=0;
-    public admin() {
+    public Ifrmadmin() {
         initComponents();
         CargarDatos();
     }
@@ -41,8 +41,8 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         txtdireccion = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtan = new javax.swing.JTextField();
@@ -52,19 +52,18 @@ public class admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btneliminar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 153, 153));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(15, 36, 178));
-        jLabel5.setText("Fecha de antiguedad:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(15, 36, 178));
         jLabel6.setText("Fecha de liquidacion:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(15, 36, 178));
+        jLabel4.setText("Direccion:");
 
         txtdireccion.setForeground(new java.awt.Color(0, 153, 153));
 
@@ -110,13 +109,13 @@ public class admin extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(15, 36, 178));
+        jLabel5.setText("Fecha de antiguedad:");
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 0, 153));
         jLabel3.setText("Nomina");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(15, 36, 178));
-        jLabel4.setText("Direccion:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +124,7 @@ public class admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -187,16 +186,15 @@ public class admin extends javax.swing.JFrame {
                             .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(btneliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-     private void CargarDatos(){
+    private void CargarDatos(){
        //Para limpiar el modelo
        mimodelo = new DefaultTableModel(null,titulo);
        //Para recargar la tabla cada vez que se modifique algo
@@ -213,6 +211,7 @@ public class admin extends javax.swing.JFrame {
         }
    } 
   
+    
     private void tabladataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabladataMousePressed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Se preciono algun lugar de la tabla","Seleccion",JOptionPane.INFORMATION_MESSAGE);
@@ -227,31 +226,24 @@ public class admin extends javax.swing.JFrame {
         valorID = Integer.valueOf(tabladata.getValueAt(fila, 0).toString());
     }//GEN-LAST:event_tabladataMousePressed
 
-    
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         Conexion conexion = new Conexion();
-         Datos datos = new Datos();
-         
-         datos.setId(valorID);       
-         
-         if (conexion.borrar(valorID)) {
-            JOptionPane.showMessageDialog(this, "Se elimino correctamente...");    
+        Datos datos = new Datos();
+
+        datos.setId(valorID);
+
+        if (conexion.borrar(valorID)) {
+            JOptionPane.showMessageDialog(this, "Se elimino correctamente...");
             mimodelo= (DefaultTableModel) tabladata.getModel();
             mimodelo.getDataVector().removeAllElements();
             CargarDatos();
-            
+
         }else{
-              JOptionPane.showMessageDialog(this, "Error al eliminar...");
-          
+            JOptionPane.showMessageDialog(this, "Error al eliminar...");
+
     }//GEN-LAST:event_btneliminarActionPerformed
 
-    
     }
-    
- 
-    
-    
-        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btneliminar;
